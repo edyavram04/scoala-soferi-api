@@ -62,4 +62,11 @@ public interface ElevCursRepository extends JpaRepository<ElevCurs, ElevCursId> 
             @Param("idElev") Long idElev,
             @Param("idCurs") Long idCurs
     );
+
+
+@Modifying
+@Transactional
+@Query(value = "DELETE FROM Elevi_Cursuri WHERE ID_Elev = :idElev",
+        nativeQuery = true)
+void stergeDupaIdElev(@Param("idElev") Integer idElev);
 }

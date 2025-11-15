@@ -18,7 +18,7 @@ public class Curs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Curs")
-    private Long idCurs;
+    private Integer idCurs;
 
     @Column(name = "Denumire")
     private String denumire;
@@ -40,12 +40,11 @@ public class Curs {
     public Curs() {
     }
 
-
-    public Long getIdCurs() {
+    public Integer getIdCurs() {
         return idCurs;
     }
 
-    public void setIdCurs(Long idCurs) {
+    public void setIdCurs(Integer idCurs) {
         this.idCurs = idCurs;
     }
 

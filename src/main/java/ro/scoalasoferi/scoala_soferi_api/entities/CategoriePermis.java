@@ -15,7 +15,7 @@ public class CategoriePermis {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Categorie")
     // Folosim Long pentru că e mai flexibil decât Integer și se potrivește cu INT din SQL
-    private Long idCategorie;
+    private Integer idCategorie;
 
     @Column(name = "NumeCategorie")
     private String numeCategorie;
@@ -27,11 +27,12 @@ public class CategoriePermis {
     // --- Getteri și Setteri ---
     // (Click dreapta -> Generate... -> Getter and Setter)
 
-    public Long getIdCategorie() {
+
+    public Integer getIdCategorie() {
         return idCategorie;
     }
 
-    public void setIdCategorie(Long idCategorie) {
+    public void setIdCategorie(Integer idCategorie) {
         this.idCategorie = idCategorie;
     }
 

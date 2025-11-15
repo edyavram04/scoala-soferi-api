@@ -11,23 +11,19 @@ import ro.scoalasoferi.scoala_soferi_api.entities.Elev;
 import java.util.List;
 import java.util.Optional;
 
-
-public interface ElevRepository extends JpaRepository<Elev, Long> {
-
+// (1) CORECȚIE AICI: Cheia primară a lui 'Elev' este Integer, nu Long
+public interface ElevRepository extends JpaRepository<Elev, Integer> {
 
     @Query(value = "SELECT * FROM Elevi WHERE ID = :id",
             nativeQuery = true)
-    Optional<Elev> gasesteDupaId(@Param("id") Long id);
-
+        // (2) CORECȚIE AICI: Parametrul 'id' este Integer
+    Optional<Elev> gasesteDupaId(@Param("id") Integer id);
 
     @Query(value = "SELECT * FROM Elevi",
             nativeQuery = true)
     List<Elev> gasesteToti();
 
-
     // --- CREATE (INSERT) ---
-    // Aceasta are nevoie de @Modifying și @Transactional
-
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO Elevi (Nume, Prenume, Telefon, ID_Instructor) " +
@@ -37,10 +33,11 @@ public interface ElevRepository extends JpaRepository<Elev, Long> {
             @Param("nume") String nume,
             @Param("prenume") String prenume,
             @Param("tel") String telefon,
-            @Param("idInstr") Long idInstructor
+            // (3) CORECȚIE AICI: ID_Instructor este Integer
+            @Param("idInstr") Integer idInstructor
     );
 
-
+    // --- UPDATE ---
     @Modifying
     @Transactional
     @Query(value = "UPDATE Elevi SET Nume = :nume, Prenume = :prenume, " +
@@ -48,22 +45,20 @@ public interface ElevRepository extends JpaRepository<Elev, Long> {
             "WHERE ID = :id",
             nativeQuery = true)
     void actualizeazaElev(
-            @Param("id") Long id,
+            // (4) CORECȚIE AICI: ID-ul este Integer
+            @Param("id") Integer id,
             @Param("nume") String nume,
             @Param("prenume") String prenume,
             @Param("tel") String telefon,
-            @Param("idInstr") Long idInstructor
+            // (5) CORECȚIE AICI: ID_Instructor este Integer
+            @Param("idInstr") Integer idInstructor
     );
 
-
     // --- DELETE ---
-    // Are nevoie de @Modifying și @Transactional
-
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Elevi WHERE ID = :id",
             nativeQuery = true)
-    void stergeDupaId(@Param("id") Long id);
-
-
+    // (6) CORECȚIE AICI: ID-ul este Integer
+    void stergeDupaId(@Param("id") Integer id);
 }

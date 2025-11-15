@@ -12,27 +12,40 @@ import java.util.Objects;
 public class ElevCursId implements Serializable {
 
     @Column(name = "ID_Elev")
-    private Long idElev;
+    private Integer idElev;
 
     @Column(name = "ID_Curs")
-    private Long idCurs;
+    private Integer idCurs;
 
     // --- Constructor gol (obligatoriu) ---
     public ElevCursId() {
     }
 
     // --- Constructor cu parametri (util) ---
-    public ElevCursId(Long idElev, Long idCurs) {
+    public ElevCursId(Integer idElev, Integer idCurs) {
         this.idElev = idElev;
         this.idCurs = idCurs;
     }
 
     // --- Getteri și Setteri (obligatorii) ---
     // (Generează-i automat)
-    public Long getIdElev() { return idElev; }
-    public void setIdElev(Long idElev) { this.idElev = idElev; }
-    public Long getIdCurs() { return idCurs; }
-    public void setIdCurs(Long idCurs) { this.idCurs = idCurs; }
+
+
+    public Integer getIdCurs() {
+        return idCurs;
+    }
+
+    public void setIdCurs(Integer idCurs) {
+        this.idCurs = idCurs;
+    }
+
+    public Integer getIdElev() {
+        return idElev;
+    }
+
+    public void setIdElev(Integer idElev) {
+        this.idElev = idElev;
+    }
 
     // --- equals() și hashCode() (ABSOLUT OBLIGATORII) ---
     // JPA are nevoie de ele pentru a compara cheile.
