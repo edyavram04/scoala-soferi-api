@@ -14,37 +14,33 @@ import jakarta.persistence.Column;
 @Table(name = "Elevi_Cursuri")
 public class ElevCurs {
 
-    // (1) @EmbeddedId: Folosim cheia compusă pe care am creat-o mai devreme
+
     @EmbeddedId
     private ElevCursId id;
 
-    // (2) Mapăm relația către Elev
+
     @ManyToOne
-    // (3) @MapsId: Îi spune lui JPA "Câmpul 'idElev' din cheia @EmbeddedId
-    //     este de fapt gestionat de această relație @ManyToOne"
+
     @MapsId("idElev")
     @JoinColumn(name = "ID_Elev")
     private Elev elev;
 
-    // (4) Mapăm relația către Curs
+
     @ManyToOne
-    @MapsId("idCurs") // La fel și aici, pentru 'idCurs'
+    @MapsId("idCurs")
     @JoinColumn(name = "ID_Curs")
     private Curs curs;
 
-    // (5) Acum adăugăm coloanele suplimentare
+
     @Column(name = "DataStart")
-    private LocalDate dataStart; // SQL DATE se mapează la LocalDate
+    private LocalDate dataStart;
 
     @Column(name = "StarePlata")
     private String starePlata;
 
-    // --- Constructor gol (obligatoriu) ---
+
     public ElevCurs() {
     }
-
-    // --- Getteri și Setteri ---
-    // (Generează-i pentru TOATE câmpurile: id, elev, curs, dataStart, starePlata)
 
     public ElevCursId getId() {
         return id;

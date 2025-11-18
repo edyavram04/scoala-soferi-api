@@ -10,18 +10,15 @@ import ro.scoalasoferi.scoala_soferi_api.repositories.AdministratorRepository;
 import java.util.Map;
 import java.util.Optional;
 
-// (1) VERIFICAREA #1: Este @RestController aici?
+
 @RestController
-// (2) VERIFICAREA #2: Ai @RequestMapping corect aici?
 @RequestMapping("/api/auth")
-// (3) VERIFICAREA #3: Numele clasei este 'AuthController'?
-public class AuthController { // <-- Numele tău de clasă
+
+public class AuthController {
 
     @Autowired
     private AdministratorRepository adminRepo;
 
-    // (4) VERIFICAREA #4: Ai @PostMapping("/login") aici?
-    // Adresa finală devine: /api/auth + /login
     @PostMapping("/login")
     public ResponseEntity<?> processLogin(@RequestBody Map<String, String> loginRequest) {
 

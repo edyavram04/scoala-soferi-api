@@ -11,7 +11,7 @@ import jakarta.persistence.Column;
 @Table(name = "Masini")
 public class Masina {
 
-    // (1) @Id este pe NrInmatriculare
+
     @Id
     @Column(name = "NrInmatriculare")
     private String nrInmatriculare;

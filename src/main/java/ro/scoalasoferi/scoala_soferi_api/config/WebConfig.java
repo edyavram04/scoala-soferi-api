@@ -4,11 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
- * Această clasă este esențială pentru a permite
- * aplicației React (care rulează pe localhost:3000)
- * să vorbească cu acest backend (care rulează pe localhost:8080).
- */
+
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
