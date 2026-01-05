@@ -10,23 +10,21 @@ import ro.scoalasoferi.scoala_soferi_api.entities.Instructor;
 import java.util.List;
 import java.util.Optional;
 
-public interface InstructorRepository extends JpaRepository<Instructor, Long> {
+// (1) AICI AM SCHIMBAT DIN Long ÎN Integer
+public interface InstructorRepository extends JpaRepository<Instructor, Integer> {
 
     // --- READ ---
-    @Query(value = "SELECT * FROM Instructori WHERE ID = :id",
-            nativeQuery = true)
-    Optional<Instructor> gasesteDupaId(@Param("id") Long id);
+    // (2) Parametrul este acum Integer
+    @Query(value = "SELECT * FROM Instructori WHERE ID = :id", nativeQuery = true)
+    Optional<Instructor> gasesteDupaId(@Param("id") Integer id);
 
-    @Query(value = "SELECT * FROM Instructori",
-            nativeQuery = true)
+    @Query(value = "SELECT * FROM Instructori", nativeQuery = true)
     List<Instructor> gasesteToti();
 
     // --- CREATE ---
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Instructori (Nume, Prenume, CNP, Telefon) " +
-            "VALUES (:nume, :prenume, :cnp, :tel)",
-            nativeQuery = true)
+    @Query(value = "INSERT INTO Instructori (Nume, Prenume, CNP, Telefon) VALUES (:nume, :prenume, :cnp, :tel)", nativeQuery = true)
     void adaugaInstructorNou(
             @Param("nume") String nume,
             @Param("prenume") String prenume,
@@ -37,12 +35,10 @@ public interface InstructorRepository extends JpaRepository<Instructor, Long> {
     // --- UPDATE ---
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Instructori SET Nume = :nume, Prenume = :prenume, " +
-            "CNP = :cnp, Telefon = :tel " +
-            "WHERE ID = :id",
-            nativeQuery = true)
+    // (3) Parametrul id este Integer
+    @Query(value = "UPDATE Instructori SET Nume = :nume, Prenume = :prenume, CNP = :cnp, Telefon = :tel WHERE ID = :id", nativeQuery = true)
     void actualizeazaInstructor(
-            @Param("id") Long id,
+            @Param("id") Integer id,
             @Param("nume") String nume,
             @Param("prenume") String prenume,
             @Param("cnp") String cnp,
@@ -52,7 +48,7 @@ public interface InstructorRepository extends JpaRepository<Instructor, Long> {
     // --- DELETE ---
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM Instructori WHERE ID = :id",
-            nativeQuery = true)
-    void stergeDupaId(@Param("id") Long id);
+    // (4) Parametrul id este Integer
+    @Query(value = "DELETE FROM Instructori WHERE ID = :id", nativeQuery = true)
+    void stergeDupaId(@Param("id") Integer id);
 }

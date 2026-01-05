@@ -10,63 +10,37 @@ import ro.scoalasoferi.scoala_soferi_api.entities.ElevCursId;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public interface ElevCursRepository extends JpaRepository<ElevCurs, ElevCursId> {
 
-    // --- READ ---
-    // Aici ID-ul este compus din două părți
-    @Query(value = "SELECT * FROM Elevi_Cursuri WHERE ID_Elev = :idElev AND ID_Curs = :idCurs",
-            nativeQuery = true)
-    Optional<ElevCurs> gasesteDupaId(
-            @Param("idElev") Long idElev,
-            @Param("idCurs") Long idCurs
-    );
-
-    @Query(value = "SELECT * FROM Elevi_Cursuri",
-            nativeQuery = true)
+    @Query(value = "SELECT * FROM Elevi_Cursuri", nativeQuery = true)
     List<ElevCurs> gasesteToate();
 
-    // --- CREATE ---
+    // INSERT COMPLEX
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Elevi_Cursuri (ID_Elev, ID_Curs, DataStart, StarePlata) " +
-            "VALUES (:idElev, :idCurs, :data, :stare)",
+    @Query(value = "INSERT INTO Elevi_Cursuri (ID_Elev, ID_Curs, ID_Instructor, NrInmatriculare, DataStart, StarePlata) " +
+            "VALUES (:idElev, :idCurs, :idInstr, :nrMasina, :data, :stare)",
             nativeQuery = true)
-    void adaugaInscriereNoua(
-            @Param("idElev") Long idElev,
-            @Param("idCurs") Long idCurs,
+    void adaugaInscriereCompleta(
+            @Param("idElev") Integer idElev,
+            @Param("idCurs") Integer idCurs,
+            @Param("idInstr") Integer idInstructor,
+            @Param("nrMasina") String nrMasina,
             @Param("data") LocalDate dataStart,
             @Param("stare") String starePlata
     );
 
-    // --- UPDATE ---
+    // DELETE SPECIFIC (O singură înscriere)
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Elevi_Cursuri SET DataStart = :data, StarePlata = :stare " +
-            "WHERE ID_Elev = :idElev AND ID_Curs = :idCurs",
-            nativeQuery = true)
-    void actualizeazaInscriere(
-            @Param("idElev") Long idElev,
-            @Param("idCurs") Long idCurs,
-            @Param("data") LocalDate dataStart,
-            @Param("stare") String starePlata
-    );
+    @Query(value = "DELETE FROM Elevi_Cursuri WHERE ID_Elev = :idElev AND ID_Curs = :idCurs", nativeQuery = true)
+    void sterge(@Param("idElev") Integer idElev, @Param("idCurs") Integer idCurs);
 
-    // --- DELETE ---
+    // --- METODA CARE ÎȚI LIPSEA (Pentru ElevController) ---
+    // Șterge TOATE cursurile unui elev (când ștergi elevul de tot)
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM Elevi_Cursuri WHERE ID_Elev = :idElev AND ID_Curs = :idCurs",
-            nativeQuery = true)
-    void stergeDupaId(
-            @Param("idElev") Long idElev,
-            @Param("idCurs") Long idCurs
-    );
-
-
-@Modifying
-@Transactional
-@Query(value = "DELETE FROM Elevi_Cursuri WHERE ID_Elev = :idElev",
-        nativeQuery = true)
-void stergeDupaIdElev(@Param("idElev") Integer idElev);
+    @Query(value = "DELETE FROM Elevi_Cursuri WHERE ID_Elev = :idElev", nativeQuery = true)
+    void stergeDupaIdElev(@Param("idElev") Integer idElev);
 }

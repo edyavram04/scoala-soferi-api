@@ -7,6 +7,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "Elevi")
@@ -30,6 +31,7 @@ public class Elev {
     @ManyToOne
 
     @JoinColumn(name = "ID_Instructor")
+    @JsonIgnoreProperties("elevi")
     private Instructor instructor;
 
     public Elev() {
