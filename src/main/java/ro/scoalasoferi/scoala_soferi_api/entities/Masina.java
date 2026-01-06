@@ -1,22 +1,15 @@
 package ro.scoalasoferi.scoala_soferi_api.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties; // <--- IMPORT NOU
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Masini")
 public class Masina {
 
-
     @Id
     @Column(name = "NrInmatriculare")
     private String nrInmatriculare;
-
-
 
     @Column(name = "Marca")
     private String marca;
@@ -26,42 +19,21 @@ public class Masina {
 
     @ManyToOne
     @JoinColumn(name = "ID_Categorie")
+    // 👇 ADĂUGĂM ASTA CA SĂ NU INTRE ÎN BUCLĂ INFINITĂ
+    // Presupunând că în CategoriePermis lista se numește "masini"
+    @JsonIgnoreProperties("masini")
     private CategoriePermis categoriePermis;
 
+    public Masina() {}
 
-    public Masina() {
-    }
+    // ... Getters și Setters ...
+    public String getNrInmatriculare() { return nrInmatriculare; }
+    public void setNrInmatriculare(String nrInmatriculare) { this.nrInmatriculare = nrInmatriculare; }
+    public String getMarca() { return marca; }
+    public void setMarca(String marca) { this.marca = marca; }
+    public String getModel() { return model; }
+    public void setModel(String model) { this.model = model; }
 
-
-    public String getNrInmatriculare() {
-        return nrInmatriculare;
-    }
-
-    public void setNrInmatriculare(String nrInmatriculare) {
-        this.nrInmatriculare = nrInmatriculare;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public CategoriePermis getCategoriePermis() {
-        return categoriePermis;
-    }
-
-    public void setCategoriePermis(CategoriePermis categoriePermis) {
-        this.categoriePermis = categoriePermis;
-    }
+    public CategoriePermis getCategoriePermis() { return categoriePermis; }
+    public void setCategoriePermis(CategoriePermis categoriePermis) { this.categoriePermis = categoriePermis; }
 }
