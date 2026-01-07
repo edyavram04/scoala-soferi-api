@@ -1,13 +1,12 @@
 package ro.scoalasoferi.scoala_soferi_api.entities;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
+
+import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+// Importuri pentru Validare
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "Elevi")
@@ -19,24 +18,31 @@ public class Elev {
     private Integer id;
 
     @Column(name = "Nume")
+    @NotBlank(message = "Numele este obligatoriu")
+    @Pattern(regexp = "^[a-zA-ZăâîșțĂÂÎȘȚ\\s-]+$", message = "Numele poate conține doar litere")
     private String nume;
 
     @Column(name = "Prenume")
+    @NotBlank(message = "Prenumele este obligatoriu")
+    @Pattern(regexp = "^[a-zA-ZăâîșțĂÂÎȘȚ\\s-]+$", message = "Prenumele poate conține doar litere")
     private String prenume;
 
     @Column(name = "Telefon")
+    @NotBlank(message = "Telefonul este obligatoriu")
+    @Size(min = 10, message = "Telefonul trebuie să aibă minim 10 cifre")
+    @Pattern(regexp = "\\d+", message = "Telefonul trebuie să conțină doar cifre")
     private String telefon;
 
-
     @ManyToOne
-
     @JoinColumn(name = "ID_Instructor")
     @JsonIgnoreProperties("elevi")
+    @NotNull(message = "Trebuie să selectezi un instructor")
     private Instructor instructor;
 
     public Elev() {
     }
 
+    // --- Getteri și Setteri ---
 
     public Integer getId() {
         return id;
@@ -70,7 +76,6 @@ public class Elev {
         this.telefon = telefon;
     }
 
-    // Getter și Setter pentru obiectul Instructor
     public Instructor getInstructor() {
         return instructor;
     }
