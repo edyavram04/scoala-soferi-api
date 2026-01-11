@@ -11,7 +11,7 @@ import ro.scoalasoferi.scoala_soferi_api.entities.Elev;
 import java.util.List;
 import java.util.Optional;
 
-// (1) CORECȚIE AICI: Cheia primară a lui 'Elev' este Integer, nu Long
+
 public interface ElevRepository extends JpaRepository<Elev, Integer> {
 
     @Query(value = "SELECT * FROM Elevi WHERE ID = :id",
@@ -51,7 +51,7 @@ public interface ElevRepository extends JpaRepository<Elev, Integer> {
             @Param("idInstr") Integer idInstructor
     );
 
-    // --- DELETE ---
+    //DELETE
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Elevi WHERE ID = :id",

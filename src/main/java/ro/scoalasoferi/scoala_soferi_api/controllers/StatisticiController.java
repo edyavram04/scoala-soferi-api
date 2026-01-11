@@ -17,7 +17,7 @@ public class StatisticiController {
     @Autowired
     private ElevCursRepository repo;
 
-    // Helper pentru conversie
+
     private List<StatisticaDTO> converteste(List<Object[]> listaBruta) {
         List<StatisticaDTO> rezultat = new ArrayList<>();
         for (Object[] rand : listaBruta) {
@@ -48,8 +48,6 @@ public class StatisticiController {
         List<Object[]> date = repo.getRaportElevInstructor();
         List<StatisticaDTO> rezultat = new ArrayList<>();
         for (Object[] rand : date) {
-            // Aici "valoare" e un String, dar DTO-ul nostru așteaptă Number.
-            // Putem face un truc: punem 0 la valoare, și afișăm textul în etichetă combinată
             String elev = (String) rand[0];
             String instr = (String) rand[1];
             rezultat.add(new StatisticaDTO(elev + " -> " + instr, 0));
@@ -88,7 +86,6 @@ public class StatisticiController {
         for (Object[] rand : date) {
             String numeElev = (String) rand[0];
             String numeCurs = (String) rand[1];
-            // Combinăm Numele cu Cursul pentru etichetă
             rezultat.add(new StatisticaDTO(numeElev + " (" + numeCurs + ")", (Number) rand[2]));
         }
         return ResponseEntity.ok(rezultat);
@@ -113,7 +110,6 @@ public class StatisticiController {
         List<StatisticaDTO> rezultat = new ArrayList<>();
         for (Object[] rand : date) {
             String nume = (String) rand[0];
-            // Nu avem un număr în select, punem 1 simbolic
             rezultat.add(new StatisticaDTO(nume, 1));
         }
         return ResponseEntity.ok(rezultat);

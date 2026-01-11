@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public interface CategoriePermisRepository extends JpaRepository<CategoriePermis, Long> {
 
-    // --- READ ---
+    //READ
     @Query(value = "SELECT * FROM CategoriePermis WHERE ID_Categorie = :id",
             nativeQuery = true)
     Optional<CategoriePermis> gasesteDupaId(@Param("id") Long id);
@@ -21,14 +21,14 @@ public interface CategoriePermisRepository extends JpaRepository<CategoriePermis
             nativeQuery = true)
     List<CategoriePermis> gasesteToate();
 
-    // --- CREATE ---
+    //  CREATE
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO CategoriePermis (NumeCategorie) VALUES (:nume)",
             nativeQuery = true)
     void adaugaCategorieNoua(@Param("nume") String numeCategorie);
 
-    // --- UPDATE ---
+    //UPDATE
     @Modifying
     @Transactional
     @Query(value = "UPDATE CategoriePermis SET NumeCategorie = :nume " +
@@ -39,7 +39,7 @@ public interface CategoriePermisRepository extends JpaRepository<CategoriePermis
             @Param("nume") String numeCategorie
     );
 
-    // --- DELETE ---
+    //DELETE
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM CategoriePermis WHERE ID_Categorie = :id",

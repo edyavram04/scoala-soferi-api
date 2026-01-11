@@ -2,7 +2,6 @@ package ro.scoalasoferi.scoala_soferi_api.entities;
 
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-// Importuri pentru Validare
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -42,7 +41,7 @@ public class Elev {
     public Elev() {
     }
 
-    // --- Getteri și Setteri ---
+
 
     public Integer getId() {
         return id;

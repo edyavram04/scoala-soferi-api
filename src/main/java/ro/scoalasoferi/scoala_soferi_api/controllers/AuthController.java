@@ -3,7 +3,7 @@ package ro.scoalasoferi.scoala_soferi_api.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*; // Asigură-te că importurile sunt corecte
+import org.springframework.web.bind.annotation.*;
 import ro.scoalasoferi.scoala_soferi_api.entities.Administrator;
 import ro.scoalasoferi.scoala_soferi_api.repositories.AdministratorRepository;
 

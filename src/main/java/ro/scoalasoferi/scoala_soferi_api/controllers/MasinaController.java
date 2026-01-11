@@ -17,15 +17,13 @@ public class MasinaController {
     @Autowired
     private MasinaRepository masinaRepo;
 
-    // --- CLASA AJUTĂTOARE (DTO) ---
-    // Folosim asta ca să primim datele simplu de la React
     public static class MasinaRequest {
         public String nrInmatriculare;
         public String marca;
         public String model;
-        public Long idCategorie; // React trimite doar un număr aici
+        public Long idCategorie;
     }
-    // -----------------------------
+
 
     @GetMapping
     public ResponseEntity<List<Masina>> getAll() {
@@ -40,7 +38,6 @@ public class MasinaController {
     }
 
     @PostMapping
-    // Primim MasinaRequest, NU Masina direct
     public ResponseEntity<?> create(@RequestBody MasinaRequest req) {
         masinaRepo.adaugaMasinaNoua(
                 req.nrInmatriculare,

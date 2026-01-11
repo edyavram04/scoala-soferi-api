@@ -10,7 +10,6 @@ public class ElevCurs {
     @EmbeddedId
     private ElevCursId id;
 
-    // --- RELAȚII (JOIN-uri) ---
     @ManyToOne
     @MapsId("idElev")
     @JoinColumn(name = "ID_Elev")

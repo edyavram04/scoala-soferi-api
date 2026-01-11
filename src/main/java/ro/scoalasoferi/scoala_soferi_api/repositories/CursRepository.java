@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public interface CursRepository extends JpaRepository<Curs, Long> {
 
-    // --- READ ---
+    // READ
     @Query(value = "SELECT * FROM Cursuri WHERE ID_Curs = :id",
             nativeQuery = true)
     Optional<Curs> gasesteDupaId(@Param("id") Long id);
@@ -22,7 +22,7 @@ public interface CursRepository extends JpaRepository<Curs, Long> {
             nativeQuery = true)
     List<Curs> gasesteToate();
 
-    // --- CREATE ---
+    // CREATE
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO Cursuri (Denumire, Pret, Ore, ID_Categorie) " +
@@ -35,7 +35,7 @@ public interface CursRepository extends JpaRepository<Curs, Long> {
             @Param("idCat") Long idCategorie
     );
 
-    // --- UPDATE ---
+    // UPDATE
     @Modifying
     @Transactional
     @Query(value = "UPDATE Cursuri SET Denumire = :den, Pret = :pret, " +
@@ -50,7 +50,7 @@ public interface CursRepository extends JpaRepository<Curs, Long> {
             @Param("idCat") Long idCategorie
     );
 
-    // --- DELETE ---
+    //DELETE
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Cursuri WHERE ID_Curs = :id",

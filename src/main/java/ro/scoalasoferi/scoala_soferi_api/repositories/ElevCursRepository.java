@@ -31,14 +31,14 @@ public interface ElevCursRepository extends JpaRepository<ElevCurs, ElevCursId> 
             @Param("stare") String starePlata
     );
 
-    // DELETE SPECIFIC (O singură înscriere)
+    // DELETE SPECIFIC
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Elevi_Cursuri WHERE ID_Elev = :idElev AND ID_Curs = :idCurs", nativeQuery = true)
     void sterge(@Param("idElev") Integer idElev, @Param("idCurs") Integer idCurs);
 
-    // --- METODA CARE ÎȚI LIPSEA (Pentru ElevController) ---
-    // Șterge TOATE cursurile unui elev (când ștergi elevul de tot)
+
+    // Șterge TOATE cursurile unui elev (cand sterg elevul de tot)
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Elevi_Cursuri WHERE ID_Elev = :idElev", nativeQuery = true)
@@ -47,7 +47,6 @@ public interface ElevCursRepository extends JpaRepository<ElevCurs, ElevCursId> 
 
 
     // 1. Număr elevi per Instructor
-    // SQL Server foloseste + pentru concatenare siruri
     @Query(value = "SELECT i.Nume + ' ' + i.Prenume, COUNT(ec.ID_Elev) " +
             "FROM Elevi_Cursuri ec " +
             "JOIN Instructori i ON ec.ID_Instructor = i.ID " +
@@ -75,7 +74,7 @@ public interface ElevCursRepository extends JpaRepository<ElevCurs, ElevCursId> 
             nativeQuery = true)
     List<Object[]> getRaportElevInstructor();
 
-    // 6. Lista completă: Elev - Mașină (Cine pe ce conduce)
+    // 6. Lista completă: Elev - Mașină
     @Query(value =
             "SELECT e.Nume + ' ' + e.Prenume, m.Marca + ' ' + m.NrInmatriculare " +
                     "FROM Elevi_Cursuri ec " +
@@ -84,7 +83,7 @@ public interface ElevCursRepository extends JpaRepository<ElevCurs, ElevCursId> 
             nativeQuery = true)
     List<Object[]> getRaportElevMasina();
 
-    // 7. Lista completă: Elev - Curs (Cine ce face)
+    // 7. Lista completă: Elev - Curs
     @Query(value =
             "SELECT e.Nume + ' ' + e.Prenume, c.Denumire " +
                     "FROM Elevi_Cursuri ec " +
@@ -93,12 +92,9 @@ public interface ElevCursRepository extends JpaRepository<ElevCurs, ElevCursId> 
             nativeQuery = true)
     List<Object[]> getRaportElevCurs();
 
-    // ---------------------------------------------------------
-    // --- ZONA DE INTEROGĂRI COMPLEXE (CU SUBCERERI) ---
-    // ---------------------------------------------------------
+
 
     // 1. Elevii care s-au înscris la cursuri cu preț peste medie
-    // Subcerere: (SELECT AVG(Pret) FROM Cursuri)
     @Query(value =
             "SELECT e.Nume + ' ' + e.Prenume AS Elev, c.Denumire AS Curs, c.Pret " +
                     "FROM Elevi_Cursuri ec " +
@@ -109,7 +105,6 @@ public interface ElevCursRepository extends JpaRepository<ElevCurs, ElevCursId> 
     List<Object[]> getEleviPremium();
 
     // 2. Mașinile care NU sunt folosite deloc (NOT IN)
-    // Subcerere: (SELECT DISTINCT NrInmatriculare FROM Elevi_Cursuri WHERE NrInmatriculare IS NOT NULL)
     @Query(value =
             "SELECT m.Marca, m.NrInmatriculare " +
                     "FROM Masini m " +
@@ -118,8 +113,7 @@ public interface ElevCursRepository extends JpaRepository<ElevCurs, ElevCursId> 
             nativeQuery = true)
     List<Object[]> getMasiniNeutilizate();
 
-    // 3. Instructorii care au mai mult de 2 elevi activi (HAVING cu Subcerere implicită în logică)
-    // Aici folosim o subcerere în clauza WHERE pentru a filtra ID-urile
+    // 3. Instructorii care au mai mult de 2 elevi activi
     @Query(value =
             "SELECT i.Nume + ' ' + i.Prenume, i.Telefon " +
                     "FROM Instructori i " +

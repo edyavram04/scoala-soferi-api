@@ -9,7 +9,7 @@ import ro.scoalasoferi.scoala_soferi_api.repositories.CursRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cursuri") // <--- Asta definește adresa URL
+@RequestMapping("/api/cursuri")
 
 public class CursController {
 

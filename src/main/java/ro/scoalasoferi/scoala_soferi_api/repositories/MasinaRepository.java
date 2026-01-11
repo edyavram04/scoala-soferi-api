@@ -10,10 +10,10 @@ import ro.scoalasoferi.scoala_soferi_api.entities.Masina;
 import java.util.List;
 import java.util.Optional;
 
-// ATENȚIE: Cheia primară este String
+
 public interface MasinaRepository extends JpaRepository<Masina, String> {
 
-    // --- READ ---
+    //READ
     @Query(value = "SELECT * FROM Masini WHERE NrInmatriculare = :id",
             nativeQuery = true)
     Optional<Masina> gasesteDupaId(@Param("id") String id);
@@ -22,7 +22,7 @@ public interface MasinaRepository extends JpaRepository<Masina, String> {
             nativeQuery = true)
     List<Masina> gasesteToate();
 
-    // --- CREATE ---
+    //CREATE
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO Masini (NrInmatriculare, Marca, Model, ID_Categorie) " +
@@ -35,7 +35,7 @@ public interface MasinaRepository extends JpaRepository<Masina, String> {
             @Param("idCat") Long idCategorie
     );
 
-    // --- UPDATE ---
+    //UPDATE
     @Modifying
     @Transactional
     @Query(value = "UPDATE Masini SET Marca = :marca, Model = :model, " +
@@ -49,7 +49,7 @@ public interface MasinaRepository extends JpaRepository<Masina, String> {
             @Param("idCat") Long idCategorie
     );
 
-    // --- DELETE ---
+    // DELETE
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Masini WHERE NrInmatriculare = :id",

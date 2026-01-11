@@ -17,7 +17,7 @@ public class InscriereController {
 
     @Autowired private ElevCursRepository repo;
 
-    // Avem nevoie de repo-urile astea pentru SINCRONIZARE
+
     @Autowired private ElevRepository elevRepo;
     @Autowired private InstructorRepository instrRepo;
 
@@ -39,7 +39,7 @@ public class InscriereController {
     @PostMapping
     public ResponseEntity<?> create(@RequestBody InscriereRequest req) {
         try {
-            // --- 1. ACTUALIZARE AUTOMATĂ ELEV (SINCRONIZARE) ---
+            // 1. ACTUALIZARE AUTOMATĂ ELEV (SINCRONIZARE)
             Optional<Elev> elevOpt = elevRepo.findById(req.idElev);
             Optional<Instructor> instrOpt = instrRepo.findById(req.idInstructor);
 
@@ -47,16 +47,16 @@ public class InscriereController {
                 Elev elev = elevOpt.get();
                 Instructor instructorNou = instrOpt.get();
 
-                // Dacă instructorul ales acum e diferit de cel vechi al elevului
+
                 if (elev.getInstructor() == null || !elev.getInstructor().getId().equals(instructorNou.getId())) {
                     elev.setInstructor(instructorNou);
-                    elevRepo.save(elev); // Salvăm modificarea în tabela Elevi
+                    elevRepo.save(elev);
                     System.out.println("Instructor actualizat pentru elevul ID: " + elev.getId());
                 }
             }
-            // ---------------------------------------------------
 
-            // --- 2. SALVAREA ÎNSCRIERII ---
+
+            // SALVAREA ÎNSCRIERII
             repo.adaugaInscriereCompleta(
                     req.idElev,
                     req.idCurs,

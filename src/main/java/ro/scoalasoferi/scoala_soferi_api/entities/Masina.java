@@ -19,14 +19,12 @@ public class Masina {
 
     @ManyToOne
     @JoinColumn(name = "ID_Categorie")
-    // 👇 ADĂUGĂM ASTA CA SĂ NU INTRE ÎN BUCLĂ INFINITĂ
-    // Presupunând că în CategoriePermis lista se numește "masini"
     @JsonIgnoreProperties("masini")
     private CategoriePermis categoriePermis;
 
     public Masina() {}
 
-    // ... Getters și Setters ...
+
     public String getNrInmatriculare() { return nrInmatriculare; }
     public void setNrInmatriculare(String nrInmatriculare) { this.nrInmatriculare = nrInmatriculare; }
     public String getMarca() { return marca; }
