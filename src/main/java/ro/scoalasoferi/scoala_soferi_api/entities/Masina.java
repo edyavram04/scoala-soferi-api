@@ -1,3 +1,7 @@
+/** Clasa pentru parcul auto
+ * @author Avram Eduard-Andrei
+ * @version 11 Ianuarie 2026
+ */
 package ro.scoalasoferi.scoala_soferi_api.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties; // <--- IMPORT NOU

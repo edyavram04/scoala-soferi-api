@@ -1,3 +1,7 @@
+/** Interfata cu metode pentru autentificare
+ * @author Avram Eduard-Andrei
+ * @version 11 Ianuarie 2026
+ */
 package ro.scoalasoferi.scoala_soferi_api.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;

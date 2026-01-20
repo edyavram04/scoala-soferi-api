@@ -1,3 +1,8 @@
+/** Controller dedicat agregării datelor pentru Dashboard-ul analitic.
+ * Calculează rapoarte financiare și operaționale (Business Intelligence).
+ * @author Avram Eduard-Andrei
+ * @version 11 Ianuarie 2026
+ */
 package ro.scoalasoferi.scoala_soferi_api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;

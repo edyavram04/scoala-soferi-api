@@ -1,3 +1,8 @@
+/** Controller REST pentru gestionarea parcului auto al școlii.
+ * Permite evidența vehiculelor și asocierea lor cu categoriile de permis.
+ * @author Avram Eduard-Andrei
+ * @version 11 Ianuarie 2026
+ */
 package ro.scoalasoferi.scoala_soferi_api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;

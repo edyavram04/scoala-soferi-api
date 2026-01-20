@@ -1,3 +1,8 @@
+/** Controller REST pentru administrarea personalului didactic (instructori auto).
+ * Gestionează adăugarea, modificarea și ștergerea instructorilor din baza de date.
+ * @author Avram Eduard-Andrei
+ * @version 11 Ianuarie 2026
+ */
 package ro.scoalasoferi.scoala_soferi_api.controllers;
 
 import jakarta.validation.Valid; // <--- ESENȚIAL PENTRU VALIDARE

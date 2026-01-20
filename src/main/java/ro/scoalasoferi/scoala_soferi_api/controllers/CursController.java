@@ -1,3 +1,8 @@
+/** Controller pentru gestionarea ofertei educaționale (tipuri de cursuri).
+ * Furnizează lista cursurilor disponibile pentru procesul de înscriere.
+ * @author Avram Eduard-Andrei
+ * @version 11 Ianuarie 2026
+ */
 package ro.scoalasoferi.scoala_soferi_api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;

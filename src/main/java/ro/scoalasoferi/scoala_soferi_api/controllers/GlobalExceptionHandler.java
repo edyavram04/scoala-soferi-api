@@ -1,3 +1,8 @@
+/** Componentă globală (@RestControllerAdvice) pentru tratarea excepțiilor.
+ * Interceptează erorile de validare și le formatează într-un răspuns JSON prietenos.
+ * @author Avram Eduard-Andrei
+ * @version 11 Ianuarie 2026
+ */
 package ro.scoalasoferi.scoala_soferi_api.controllers;
 
 import org.springframework.http.HttpStatus;

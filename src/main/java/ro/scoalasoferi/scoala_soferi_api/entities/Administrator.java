@@ -1,3 +1,7 @@
+/** Clasa pentru autentificarea administratorului
+ * @author Avram Eduard-Andrei
+ * @version 11 Ianuarie 2026
+ */
 package ro.scoalasoferi.scoala_soferi_api.entities;
 
 import jakarta.persistence.Column;

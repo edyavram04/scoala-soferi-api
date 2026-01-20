@@ -1,3 +1,8 @@
+/** Controller REST pentru gestionarea datelor cursanților (CRUD).
+ * Include validarea datelor de intrare (@Valid) pentru nume, prenume și CNP.
+ * @author Avram Eduard-Andrei
+ * @version 11 Ianuarie 2026
+ */
 package ro.scoalasoferi.scoala_soferi_api.controllers;
 
 import jakarta.validation.Valid; // <--- ESENȚIAL PENTRU VALIDARE
